@@ -25,7 +25,9 @@ public class DriveService : IDriveService
         //Directory.GetCurrentDirectory()
         try
         {
-            var uploadPath = Path.Combine("/Users/ayanbhattacharya/Personal/Docker", "ANEFreeInIty-Server-API-Uploads", fileName);
+            // var uploadPath = Path.Combine("/Users/ayanbhattacharya/Personal/Docker", "ANEFreeInIty-Server-API-Uploads", fileName);
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "ANEFreeInIty-Server-API-Uploads", fileName);
+
 
             var directory = Path.GetDirectoryName(uploadPath);
             if (directory != null && !Directory.Exists(directory))
@@ -51,7 +53,9 @@ public class DriveService : IDriveService
             throw new BadRequestException("No file name provided.");
         }
 
-        var filePath = Path.Combine("/Users/ayanbhattacharya/Personal/Docker", "ANEFreeInIty-Server-API-Uploads", fileName);
+        // var filePath = Path.Combine("/Users/ayanbhattacharya/Personal/Docker", "ANEFreeInIty-Server-API-Uploads", fileName);
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "ANEFreeInIty-Server-API-Uploads", fileName);
+
 
         if (!File.Exists(filePath))
         {
