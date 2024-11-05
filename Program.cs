@@ -3,11 +3,26 @@ using ANEFreeInIty_Server_API.Extensions.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var url = builder.Configuration["Kestrel:Endpoints:Http:Url"];
-if (!string.IsNullOrEmpty(url))
+var httpUrl = builder.Configuration["Kestrel:Endpoints:Http:Url"];
+var httpsUrl = builder.Configuration["Kestrel:Endpoints:Https:Url"];
+if (!string.IsNullOrEmpty(httpUrl) && !string.IsNullOrEmpty(httpsUrl))
 {
-    builder.WebHost.UseUrls(url);
+    builder.WebHost.UseUrls(httpUrl, httpsUrl);
 }
+
+// var httpUrl = builder.Configuration["Kestrel:Endpoints:Http:Url"];
+// var httpsUrl = builder.Configuration["Kestrel:Endpoints:Https:Url"];
+
+// builder.WebHost.ConfigureKestrel(options =>
+// {
+//     //options.ListenAnyIP(5012); // HTTP endpoint
+//     options.ListenAnyIP(7100, listenOptions =>
+//     {
+//         listenOptions.UseHttps(); // HTTPS endpoint
+//     });
+// });
+
+// builder.WebHost.UseKestrel();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

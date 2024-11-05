@@ -72,7 +72,7 @@ public class DriveController : ControllerBase
     [Route("test")]
     public IActionResult Get()
     {
-        return Ok("Hello World");
+        return Ok("CONNECTED");
     }
 
     [HttpPost]
